@@ -1,0 +1,11 @@
+.menu_wrapper {
+  @apply gap-3 pb-5;
+}
+
+.search_wrapper {
+  @apply relative gap-3 h-14 w-full;
+}
+
+.search_icon {
+  @apply absolute z-30 top-6 left-4;
+}
