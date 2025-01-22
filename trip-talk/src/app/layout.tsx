@@ -11,12 +11,19 @@ export const metadata: Metadata = {
     "Trip-talk: A Next.js powered travel accommodation booking service. Discover, compare, and book the best places to stay, powered by fast and SEO-friendly technology.",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+  modal,
+}: {
+  children: ReactNode;
+  modal: ReactNode;
+}) {
   return (
     <html lang="en">
       <body>
         <div id="root">
           <ApolloSetting>
+            {modal}
             <Layout>{children}</Layout>
           </ApolloSetting>
         </div>
