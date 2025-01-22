@@ -10,6 +10,7 @@ export default function Input({
   value,
   required,
   isLabel,
+  errorMessage,
 }: IInputProps) {
   return (
     <div className={styles.input_wrapper}>
@@ -17,6 +18,9 @@ export default function Input({
         <div className={styles.label_wrapper}>
           <label className={styles.label}>{INPUT_CHILDREN[id]}</label>
           {required && <b className={`${styles.required_marker}`}>*</b>}
+          {errorMessage && (
+            <div className="pl-2 text-lightCoral">{errorMessage}</div>
+          )}
         </div>
       )}
       <input

@@ -31,6 +31,7 @@ export interface IInputProps {
   value?: string;
   required: boolean;
   isLabel: boolean;
+  errorMessage?: string;
 }
 
 export interface IButtonProps {
