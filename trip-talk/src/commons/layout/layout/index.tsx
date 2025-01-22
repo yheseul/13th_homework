@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import LayoutHeader from "../header";
+import Header from "../header";
 import LayoutBanner from "../banner";
 import useLayout from "../../hooks/useLayout";
 
@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   return (
     <div>
-      <LayoutHeader />
+      <Header />
       {!isHiddenHeader() && <LayoutBanner />}
       {children}
     </div>

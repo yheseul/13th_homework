@@ -5,7 +5,7 @@ import { HEADER } from "../../../constants/constants";
 import { CaretDownOutlined, UserOutlined } from "@ant-design/icons";
 import useLayoutHeader from "../../hooks/useLayoutHeader";
 
-export default function LayoutHeader() {
+export default function Header() {
   const {
     onClickTripTalk,
     onClickMoveMainPage,
@@ -17,7 +17,7 @@ export default function LayoutHeader() {
   } = useLayoutHeader();
 
   return (
-    <div className="flex flex-row justify-between py-5">
+    <div className="flex flex-row justify-between p-5">
       <div className="flex flex-row items-center gap-6">
         <div
           onClick={onClickMoveMainPage}
@@ -57,7 +57,7 @@ export default function LayoutHeader() {
         </div>
       </div>
       <div className="flex flex-row gap-1">
-        <div className="flex justify-center items-center w-10 h-10 bg-lightGray rounded-full">
+        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-lightGray">
           <UserOutlined className="text-xl" />
         </div>
         <CaretDownOutlined className="text-xs" />
