@@ -21,7 +21,7 @@ export default function SignUp() {
         <form
           onSubmit={handleSubmit(onClickSubmit)}
           onClick={(event) => event.stopPropagation()}
-          className="flex flex-col relative h-1/2 min-h-[544px] w-1/3 min-w-[350px] max-w-md gap-3 rounded-2xl bg-white px-6 pb-4 pt-11"
+          className="flex flex-col relative h-1/2 min-h-[544px] w-1/3 min-w-[380px] max-w-md gap-3 rounded-2xl bg-white px-6 pb-4 pt-11"
         >
           <CloseOutlined
             className="absolute right-3 top-3"
