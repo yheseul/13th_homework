@@ -43,8 +43,13 @@ export default function useLogin() {
     router.push("/boards");
   };
 
+  const onClickSignUp = () => {
+    router.push(`/?modal=signup`);
+  };
+
   return {
     handleInputChange,
     onClickLogin,
+    onClickSignUp,
   };
 }

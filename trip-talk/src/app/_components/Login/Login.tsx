@@ -5,16 +5,13 @@ import Input from "../Input/Input";
 import Button from "../Button/Button";
 import useLogin from "../../../commons/hooks/useLogin";
 
-interface ILogin {
-  onClickSignUp: () => void;
-}
+export default function Login() {
+  const { handleInputChange, onClickLogin, onClickSignUp } = useLogin();
 
-export default function Login({ onClickSignUp }: ILogin) {
-  const { handleInputChange, onClickLogin } = useLogin();
   return (
-    <div className="flex flex-col w-96 items-center gap-6 self-stretch px-5 pt-16 relative z-50">
+    <div className="relative flex flex-col items-center self-stretch gap-6 px-5 pt-16 w-96">
       <Image src="/pngs/logo.png" alt="logo" width={120} height={74.533} />
-      <div className="self-stretch text-black text-center text-lg not-italic font-semibold leading-6">
+      <div className="self-stretch text-lg not-italic font-semibold leading-6 text-center text-black">
         트립트립에 오신걸 환영합니다.
       </div>
       <div className="self-stretch text-[color:var(--gray-800,#333)] text-center text-sm not-italic font-medium leading-5">
