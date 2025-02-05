@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div>
       <Header />
-      {!isHiddenHeader() && <LayoutBanner />}
+      {isHiddenHeader && <LayoutBanner />}
       {children}
     </div>
   );
