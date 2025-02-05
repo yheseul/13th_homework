@@ -3,21 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../Button/Button";
-import styles from "./styles.module.css";
 import useBoardsDetail from "../../../commons/hooks/useBoardsDetail";
 import LikeButton from "../LikeButton/LikeButton";
 import DisLikeButton from "../DisLikeButton/DisLikeButton";
 import Youtube from "../Youtube/Youtube";
+import Divider from "../Divider";
 
 export default function BoardsDetail() {
   const { boardId, boardData } = useBoardsDetail();
 
   return (
-    <div className={styles.layout}>
-      <div className={styles.title}>{boardData?.title}</div>
+    <div className="flex flex-col gap-6">
+      <div className="text-3xl font-bold text-black">{boardData?.title}</div>
       <div>
-        <div className={styles.author_info}>
-          <div className={styles.author_name}>
+        <div className="flex flex-row justify-between">
+          <div className="flex items-center gap-1">
             <Image
               src="/svgs/profileIcon.svg"
               alt="profileIcon"
@@ -26,12 +26,12 @@ export default function BoardsDetail() {
             />
             <p>{boardData?.writer}</p>
           </div>
-          <div className={styles.date}>
+          <div className="flex items-center justify-end gap-2 text-sm font-normal text-grayMuted">
             <div>{boardData?.createdAt.slice(0, 10).replaceAll("-", ".")}</div>
           </div>
         </div>
-        <div className={styles.divider}></div>
-        <div className={styles.link_location_row}>
+        <Divider />
+        <div className="flex justify-end gap-2">
           <Image src="/svgs/link.svg" alt="link" width={24} height={24} />
           <Image
             src="/svgs/location.svg"
@@ -52,19 +52,19 @@ export default function BoardsDetail() {
         ))}
       </div>
       <div
-        className="text-start text-black text-base font-normal"
+        className="text-base font-normal text-black text-start"
         dangerouslySetInnerHTML={{ __html: boardData?.contents }}
       ></div>
-      <div className={styles.video_thumbnail_wrapper}>
+      <div className="flex py-6 flex-col items-center gap-2.5">
         {boardData?.youtubeUrl && (
           <Youtube youtubeUrl={boardData?.youtubeUrl} />
         )}
       </div>
-      <div className={styles.reaction}>
+      <div className="flex items-center justify-center gap-6">
         <DisLikeButton />
         <LikeButton />
       </div>
-      <div className={styles.button_layout}>
+      <div className="flex items-center justify-center gap-6">
         <Link href={"/boards"}>
           <Button color="white" id="list" />
         </Link>
