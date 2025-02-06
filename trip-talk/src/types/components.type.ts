@@ -138,12 +138,6 @@ export interface IPagination {
   ) => Promise<ApolloQueryResult<any>>;
   lastPage: number;
 }
-
-export interface ICommentData {
-  props?: object;
-  isEdit: boolean;
-}
-
 export interface ICheckValidationFile {
   size: number;
   type: string;
