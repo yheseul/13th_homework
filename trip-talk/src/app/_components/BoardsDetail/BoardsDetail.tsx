@@ -8,6 +8,11 @@ import LikeButton from "../LikeButton/LikeButton";
 import DisLikeButton from "../DisLikeButton/DisLikeButton";
 import Youtube from "../Youtube/Youtube";
 import Divider from "../Divider";
+import {
+  EnvironmentOutlined,
+  LinkOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 
 export default function BoardsDetail() {
   const { boardId, boardData } = useBoardsDetail();
@@ -17,13 +22,8 @@ export default function BoardsDetail() {
       <div className="text-3xl font-bold text-black">{boardData?.title}</div>
       <div>
         <div className="flex flex-row justify-between">
-          <div className="flex items-center gap-1">
-            <Image
-              src="/svgs/profileIcon.svg"
-              alt="profileIcon"
-              width={24}
-              height={24}
-            />
+          <div className="flex items-center gap-1 text-xl">
+            <UserOutlined />
             <p>{boardData?.writer}</p>
           </div>
           <div className="flex items-center justify-end gap-2 text-sm font-normal text-grayMuted">
@@ -31,14 +31,9 @@ export default function BoardsDetail() {
           </div>
         </div>
         <Divider />
-        <div className="flex justify-end gap-2">
-          <Image src="/svgs/link.svg" alt="link" width={24} height={24} />
-          <Image
-            src="/svgs/location.svg"
-            alt="location"
-            width={24}
-            height={24}
-          />
+        <div className="flex justify-end gap-2 text-xl">
+          <LinkOutlined />
+          <EnvironmentOutlined />
         </div>
       </div>
       <div>
@@ -53,7 +48,7 @@ export default function BoardsDetail() {
       </div>
       <div
         className="text-base font-normal text-black text-start"
-        dangerouslySetInnerHTML={{ __html: boardData?.contents }}
+        dangerouslySetInnerHTML={{ __html: boardData?.contents ?? "" }}
       ></div>
       <div className="flex py-6 flex-col items-center gap-2.5">
         {boardData?.youtubeUrl && (
