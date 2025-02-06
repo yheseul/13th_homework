@@ -7,8 +7,8 @@ import {
   ReactNode,
   SetStateAction,
 } from "react";
-import { FetchBoardQuery } from "../commons/graphql/graphql";
-import { ApolloQueryResult, OperationVariables } from "@apollo/client";
+import { FetchBoardQuery, FetchBoardsQuery } from "../commons/graphql/graphql";
+import { ApolloQueryResult } from "@apollo/client";
 
 export interface IBoardsWriteHook {
   isEdit: boolean;
@@ -133,11 +133,12 @@ export interface IModalContainer {
 }
 
 export interface IPagination {
-  refetch: (
-    variables?: Partial<OperationVariables> | undefined
-  ) => Promise<ApolloQueryResult<any>>;
+  refetch: (variables?: {
+    page: number;
+  }) => Promise<ApolloQueryResult<FetchBoardsQuery>>;
   lastPage: number;
 }
+
 export interface ICheckValidationFile {
   size: number;
   type: string;

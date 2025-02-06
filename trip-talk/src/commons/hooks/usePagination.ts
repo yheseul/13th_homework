@@ -22,7 +22,7 @@ export default function usePagination(props: IPagination) {
   const onClickNextPage = () => {
     if (startPage + 10 <= props.lastPage) {
       setStartPage(startPage + 10);
-      props.refetch({ page: Number(startPage + 10) });
+      props.refetch({ page: startPage + 10 });
     } else alert("last page");
   };
 
