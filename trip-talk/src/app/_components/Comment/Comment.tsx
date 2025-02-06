@@ -1,9 +1,9 @@
-import Image from "next/image";
 import { ICommentList } from "../../../types/components.type";
 import styles from "./styles.module.css";
-import useComment from "../../../commons/hooks/useComment";
+import useComment from "../../../commons/hooks/UseComment";
 import StarRating from "../StarRating/StarRating";
 import CommentEditForm from "../CommentEditForm/CommentEditForm";
+import { CloseOutlined, EditOutlined, UserOutlined } from "@ant-design/icons";
 
 export default function Comment(props: ICommentList) {
   const { onClickEditComment, onClickDeleteComment, commentData, isEdit } =
@@ -16,12 +16,7 @@ export default function Comment(props: ICommentList) {
           <div className={styles.action_container}>
             <div>
               <div className={styles.profile}>
-                <Image
-                  src="/svgs/profileIcon.svg"
-                  alt="profile"
-                  width={24}
-                  height={24}
-                />
+                <UserOutlined />
                 <span>{commentData.writer}</span>
               </div>
               <div className={styles.rating_stars}>
@@ -29,22 +24,14 @@ export default function Comment(props: ICommentList) {
               </div>
             </div>
             <div>
-              <button onClick={onClickEditComment}>
-                <Image
-                  src="/svgs/comment-edit.svg"
-                  alt="edit"
-                  width={24}
-                  height={24}
-                />
-              </button>
-              <button onClick={onClickDeleteComment}>
-                <Image
-                  src="/svgs/close.svg"
-                  alt="close"
-                  width={24}
-                  height={24}
-                />
-              </button>
+              <EditOutlined
+                className="cursor-pointer"
+                onClick={onClickEditComment}
+              />
+              <CloseOutlined
+                className="cursor-pointer"
+                onClick={onClickDeleteComment}
+              />
             </div>
           </div>
           <div>{commentData.contents}</div>
