@@ -1,7 +1,3 @@
-"use client";
-
-import Image from "next/image";
-import Link from "next/link";
 import Button from "../Button/Button";
 import useBoardsDetail from "../../../commons/hooks/useBoardsDetail";
 import LikeButton from "../LikeButton/LikeButton";
@@ -13,9 +9,13 @@ import {
   LinkOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
+import BoardsDetailImage from "./BoardsDetailImage";
 
 export default function BoardsDetail() {
   const { boardId, boardData } = useBoardsDetail();
+  const router = useRouter();
+  console.log(boardData?.images);
 
   return (
     <div className="flex flex-col gap-6">
@@ -36,16 +36,7 @@ export default function BoardsDetail() {
           <EnvironmentOutlined />
         </div>
       </div>
-      <div>
-        {boardData?.images?.map((image) => (
-          <Image
-            src={`https://storage.googleapis.com/${image}`}
-            alt="post-image"
-            width={400}
-            height={531}
-          />
-        ))}
-      </div>
+      <BoardsDetailImage images={boardData?.images || undefined} />
       <div
         className="text-base font-normal text-black text-start"
         dangerouslySetInnerHTML={{ __html: boardData?.contents ?? "" }}
@@ -60,12 +51,16 @@ export default function BoardsDetail() {
         <LikeButton />
       </div>
       <div className="flex items-center justify-center gap-6">
-        <Link href={"/boards"}>
-          <Button color="white" id="list" />
-        </Link>
-        <Link href={`${boardId}/edit`}>
-          <Button color="white" id="edit" />
-        </Link>
+        <Button
+          color="white"
+          id="list"
+          onClick={() => router.push("/boards")}
+        />
+        <Button
+          color="white"
+          id="edit"
+          onClick={() => router.push(`${boardId}/edit`)}
+        />
       </div>
     </div>
   );
