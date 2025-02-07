@@ -11,11 +11,11 @@ import {
 } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import BoardsDetailImage from "./BoardsDetailImage";
+import Contents from "../Contents";
 
 export default function BoardsDetail() {
   const { boardId, boardData } = useBoardsDetail();
   const router = useRouter();
-  console.log(boardData?.images);
 
   return (
     <div className="flex flex-col gap-6">
@@ -37,15 +37,8 @@ export default function BoardsDetail() {
         </div>
       </div>
       <BoardsDetailImage images={boardData?.images || undefined} />
-      <div
-        className="text-base font-normal text-black text-start"
-        dangerouslySetInnerHTML={{ __html: boardData?.contents ?? "" }}
-      ></div>
-      <div className="flex py-6 flex-col items-center gap-2.5">
-        {boardData?.youtubeUrl && (
-          <Youtube youtubeUrl={boardData?.youtubeUrl} />
-        )}
-      </div>
+      <Contents contents={boardData?.contents} />
+      <Youtube youtubeUrl={boardData?.youtubeUrl || undefined} />
       <div className="flex items-center justify-center gap-6">
         <DisLikeButton />
         <LikeButton />
