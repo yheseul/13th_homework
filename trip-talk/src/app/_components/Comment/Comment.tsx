@@ -4,6 +4,7 @@ import useComment from "../../../commons/hooks/UseComment";
 import StarRating from "../StarRating/StarRating";
 import CommentEditForm from "../CommentEditForm/CommentEditForm";
 import { CloseOutlined, EditOutlined, UserOutlined } from "@ant-design/icons";
+import CreatedAt from "../CreatedAt";
 
 export default function Comment(props: ICommentList) {
   const { onClickEditComment, onClickDeleteComment, commentData, isEdit } =
@@ -36,7 +37,7 @@ export default function Comment(props: ICommentList) {
           </div>
           <div>{commentData.contents}</div>
           <span className={styles.date}>
-            {commentData.createdAt.slice(0, 10).replaceAll("-", ".")}
+            <CreatedAt createdAt={commentData.createdAt} />
           </span>
         </div>
       ) : (

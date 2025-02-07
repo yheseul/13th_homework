@@ -12,6 +12,7 @@ import {
 import { useRouter } from "next/navigation";
 import BoardsDetailImage from "./BoardsDetailImage";
 import Contents from "../Contents";
+import CreatedAt from "../CreatedAt";
 
 export default function BoardsDetail() {
   const { boardId, boardData } = useBoardsDetail();
@@ -27,7 +28,7 @@ export default function BoardsDetail() {
             <p>{boardData?.writer}</p>
           </div>
           <div className="flex items-center justify-end gap-2 text-sm font-normal text-grayMuted">
-            <div>{boardData?.createdAt.slice(0, 10).replaceAll("-", ".")}</div>
+            <CreatedAt createdAt={boardData?.createdAt || undefined} />
           </div>
         </div>
         <Divider />
