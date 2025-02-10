@@ -13,14 +13,16 @@ import { useRouter } from "next/navigation";
 import BoardsDetailImage from "./BoardsDetailImage";
 import Contents from "../Contents";
 import CreatedAt from "../CreatedAt";
+import Title from "../Title";
 
 export default function BoardsDetail() {
   const { boardId, boardData } = useBoardsDetail();
   const router = useRouter();
+  console.log(boardData?.title);
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="text-3xl font-bold text-black">{boardData?.title}</div>
+      <Title>{boardData?.title}</Title>
       <div>
         <div className="flex flex-row justify-between">
           <div className="flex items-center gap-1 text-xl">
