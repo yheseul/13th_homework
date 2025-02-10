@@ -18,7 +18,6 @@ import Title from "../Title";
 export default function BoardsDetail() {
   const { boardId, boardData } = useBoardsDetail();
   const router = useRouter();
-  console.log(boardData?.title);
 
   return (
     <div className="flex flex-col gap-6">
