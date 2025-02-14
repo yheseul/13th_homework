@@ -22,8 +22,7 @@ export default function Pagination(props: IPagination) {
           index + startPage <= props.lastPage && (
             <span
               key={index + startPage}
-              id={String(index + startPage)}
-              onClick={onClickPage}
+              onClick={onClickPage(index + 1)}
               style={{
                 color: index + startPage === currentPage ? "red" : "black",
               }}

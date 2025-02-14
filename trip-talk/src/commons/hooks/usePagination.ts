@@ -1,13 +1,13 @@
-import { MouseEvent, useState } from "react";
+import { useState } from "react";
 import { IPagination } from "../../types/components.type";
 
 export default function usePagination(props: IPagination) {
   const [startPage, setStartPage] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const onClickPage = (event: MouseEvent<HTMLSpanElement>) => {
-    props.refetch({ page: Number(event.currentTarget.id) });
-    setCurrentPage(Number(event.currentTarget.id));
+  const onClickPage = (page: number) => () => {
+    props.refetch({ page });
+    setCurrentPage(Number(page));
   };
 
   const onClickPrevPage = () => {
