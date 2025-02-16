@@ -1,14 +1,11 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
 import styles from "./styles.module.css";
 import { CalendarOutlined } from "@ant-design/icons";
+import { useDateRangeStore } from "../../../commons/stores/useDateRangeStore";
 
 export default function CustomDatePicker() {
-  const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
-    null,
-    null,
-  ]);
+  const { dateRange, setDateRange } = useDateRangeStore();
   const [startDate, endDate] = dateRange;
 
   return (
