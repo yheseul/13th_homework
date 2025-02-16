@@ -37,6 +37,8 @@ export const BUTTON: TRecord = {
   search: "검색",
   login: "로그인",
   singUp: "회원가입",
+  register: "트립토크 등록",
+  sale: "숙박권 판매",
 };
 
 export const BOARDS_WRITE: TRecord = {
