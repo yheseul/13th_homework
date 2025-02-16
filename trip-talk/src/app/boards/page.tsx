@@ -3,14 +3,16 @@
 import { useQuery } from "@apollo/client";
 import styles from "./styles.module.css";
 import BoardList from "../_components/BoardList/BoardList";
-import {
-  FetchBoardsCountDocument,
-  FetchBoardsDocument,
-} from "../../commons/graphql/graphql";
+import { FetchBoardsDocument } from "../../commons/graphql/graphql";
 import Pagination from "../_components/Pagination/Pagination";
+import FilterBar from "../_components/FilterBar";
+import useBoards from "../../commons/hooks/useBoards";
+import { IBoardList } from "../../types/board.type";
 
 export default function Boards() {
   const { data, loading, error, refetch } = useQuery(FetchBoardsDocument);
+  const { lastPage, isDateRange, filteredData } = useBoards(data);
+
   if (loading) {
     //  skeleton
   }
@@ -18,11 +20,9 @@ export default function Boards() {
     // error
   }
 
-  const { data: dataBoardsCount } = useQuery(FetchBoardsCountDocument);
-  const lastPage = Math.ceil((dataBoardsCount?.fetchBoardsCount ?? 10) / 10);
-
   return (
-    <>
+    <div className="px-4">
+      <FilterBar />
       <div className={styles.post_contain}>
         <div className={styles.boards_header}>
           <div className={styles.boards_header_number}>번호</div>
@@ -31,19 +31,30 @@ export default function Boards() {
           <div className={styles.boards_header_createdAt}>날짜</div>
         </div>
         <ul className={styles.posts}>
-          {data?.fetchBoards.map((board, index: number) => (
-            <BoardList
-              key={board._id}
-              id={board._id}
-              number={index + 1}
-              title={board.title}
-              writer={board.writer as string}
-              createdAt={board.createdAt}
-            />
-          ))}
+          {isDateRange
+            ? data?.fetchBoards.map((board, index: number) => (
+                <BoardList
+                  key={board._id}
+                  id={board._id}
+                  number={index + 1}
+                  title={board.title}
+                  writer={board.writer as string}
+                  createdAt={board.createdAt}
+                />
+              ))
+            : filteredData?.map((board: IBoardList, index: number) => (
+                <BoardList
+                  key={board._id}
+                  id={board._id}
+                  number={index + 1}
+                  title={board.title}
+                  writer={board.writer as string}
+                  createdAt={board.createdAt}
+                />
+              ))}
         </ul>
       </div>
       <Pagination refetch={refetch} lastPage={lastPage} />
-    </>
+    </div>
   );
 }
