@@ -4,7 +4,7 @@ import { IBoardList } from "../../../types/board.type";
 import useBoardsList from "../../../commons/hooks/useBoardList";
 
 export default function BoardList(props: IBoardList) {
-  const { onClickBoard, onCLickDelete } = useBoardsList(props.id);
+  const { onClickBoard, onCLickDelete } = useBoardsList(props.id ?? "");
 
   return (
     <li className={styles.board_list} onClick={onClickBoard}>
