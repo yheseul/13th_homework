@@ -11,7 +11,6 @@ import createUploadLink from "apollo-upload-client/createUploadLink.mjs";
 import { useAccessTokenStore } from "../stores/useAccessTokenStore";
 import { getAccessToken } from "../Libraries/getAccessToken";
 import { onError } from "@apollo/client/link/error";
-import { useEffect } from "react";
 import { useLoadStore } from "../stores/useLoadStore";
 
 const GLOBAL_STATE = new InMemoryCache();
@@ -23,19 +22,6 @@ interface IApolloUploadSetting {
 export default function ApolloUploadSetting(props: IApolloUploadSetting) {
   const { accessToken, setAccessToken } = useAccessTokenStore();
   const { setIsLoaded } = useLoadStore();
-
-  useEffect(() => {
-    getAccessToken()
-      .then((newAccessToken) => {
-        console.log(newAccessToken)
-        if (newAccessToken) {
-          setAccessToken(newAccessToken);
-          console.log("test")
-          alert(newAccessToken);
-        } else console.log("없어")
-      })
-      .finally(setIsLoaded);
-  }, []);
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
     if (graphQLErrors) {
@@ -60,9 +46,8 @@ export default function ApolloUploadSetting(props: IApolloUploadSetting) {
 
   const uploadLink = createUploadLink({
     uri: "https://main-practice.codebootcamp.co.kr/graphql",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
+    headers: { Authorization: `Bearer ${accessToken}` },
+    credentials: "include",
   });
 
   const client = new ApolloClient({
