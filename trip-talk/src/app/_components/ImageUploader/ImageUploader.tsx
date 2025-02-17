@@ -13,10 +13,7 @@ export default function ImageUploader({ id }: { id: string }) {
         )}
         {imageUrl && (
           <div className={styles.upload_image_wrapper}>
-            <img
-              className={styles.upload_image}
-              src={`https://storage.googleapis.com/${imageUrl}`}
-            />
+            <img className={styles.upload_image} src={imageUrl} />
             <button className={styles.deleteButton} onClick={onCLickDelete}>
               <Image
                 src="/svgs/close.svg"
