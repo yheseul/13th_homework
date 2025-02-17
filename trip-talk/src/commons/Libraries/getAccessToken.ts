@@ -19,7 +19,6 @@ export const getAccessToken = async () => {
       RestoreAccessTokenDocument
     );
     const newAccessToken = result?.restoreAccessToken.accessToken;
-    console.log(newAccessToken);
     return newAccessToken;
   } catch (error) {
     if (error instanceof Error) console.log(error.message);
