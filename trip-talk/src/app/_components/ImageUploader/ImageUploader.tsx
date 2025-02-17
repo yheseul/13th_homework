@@ -1,35 +1,49 @@
 import Image from "next/image";
-import styles from "./styles.module.css";
 import useImageUploader from "../../../commons/hooks/useImageUploader";
+import { DeleteOutlined } from "@ant-design/icons";
 
 export default function ImageUploader({ id }: { id: string }) {
-  const { onClickImage, onCLickDelete, handleImageUpload, imageUrl, fileRef } =
-    useImageUploader(id);
+  const {
+    onClickImage,
+    onCLickDelete,
+    handleImageUpload,
+    imageUrl,
+    fileRef,
+    showDeleteIcon,
+    handleMouseOver,
+    handleMouseOut,
+  } = useImageUploader(id);
+
   return (
     <>
-      <div className={styles.image_uploader_wrapper} onClick={onClickImage}>
+      <div
+        className="relative flex flex-col items-center justify-center w-40 h-40 gap-2 bg-white rounded-lg"
+        onClick={onClickImage}
+      >
         {!imageUrl && (
           <Image src="/svgs/add.svg" alt="add" width={24} height={24} />
         )}
         {imageUrl && (
-          <div className={styles.upload_image_wrapper}>
-            <img className={styles.upload_image} src={imageUrl} />
-            <button className={styles.deleteButton} onClick={onCLickDelete}>
-              <Image
-                src="/svgs/close.svg"
-                alt="delete"
-                width={24}
-                height={24}
-              />
-            </button>
+          <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+            <img className="w-40 h-40 rounded-lg" src={imageUrl} />
+            {showDeleteIcon && (
+              <button
+                className="absolute top-1 right-1"
+                onClick={onCLickDelete}
+              >
+                <DeleteOutlined />
+              </button>
+            )}
           </div>
         )}
         {!imageUrl && (
-          <div className={styles.upload_prompt}>클릭해서 사진 업로드</div>
+          <div className="text-base font-normal text-dimGray">
+            클릭해서 사진 업로드
+          </div>
         )}
       </div>
       <input
-        className={styles.input}
+        className="hidden"
         type="file"
         onChange={handleImageUpload}
         ref={fileRef}

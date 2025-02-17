@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent, useRef } from "react";
+import { ChangeEvent, MouseEvent, useRef, useState } from "react";
 import checkValidationFile from "../Libraries/checkValidationFile";
 import { ICheckValidationFile } from "../../types/components.type";
 import { useImageStore } from "../stores/useImageStore";
@@ -6,6 +6,10 @@ import { useImageStore } from "../stores/useImageStore";
 export default function useImageUploader(id: string) {
   const { imageMap, setImage } = useImageStore();
   const fileRef = useRef<HTMLInputElement>(null);
+  const [showDeleteIcon, setShowDeleteIcon] = useState(false);
+
+  const handleMouseOver = () => setShowDeleteIcon(true);
+  const handleMouseOut = () => setShowDeleteIcon(false);
 
   const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -35,5 +39,8 @@ export default function useImageUploader(id: string) {
     handleImageUpload,
     imageUrl: imageMap[id] || "",
     fileRef,
+    showDeleteIcon,
+    handleMouseOver,
+    handleMouseOut,
   };
 }
