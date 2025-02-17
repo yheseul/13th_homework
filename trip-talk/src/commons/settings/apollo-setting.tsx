@@ -12,6 +12,7 @@ import { useAccessTokenStore } from "../stores/useAccessTokenStore";
 import { getAccessToken } from "../Libraries/getAccessToken";
 import { onError } from "@apollo/client/link/error";
 import { useLoadStore } from "../stores/useLoadStore";
+import { useEffect } from "react";
 
 const GLOBAL_STATE = new InMemoryCache();
 
@@ -22,6 +23,14 @@ interface IApolloUploadSetting {
 export default function ApolloUploadSetting(props: IApolloUploadSetting) {
   const { accessToken, setAccessToken } = useAccessTokenStore();
   const { setIsLoaded } = useLoadStore();
+
+  useEffect(() => {
+    getAccessToken()
+      .then((newAccessToken) => {
+        if (newAccessToken) setAccessToken(newAccessToken);
+      })
+      .finally(setIsLoaded);
+  }, []);
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
     if (graphQLErrors) {
